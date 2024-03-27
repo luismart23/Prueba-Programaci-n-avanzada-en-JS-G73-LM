@@ -3,26 +3,31 @@
     {
       "nombre": "Leon",
       "img": "leon.jpg",
+      "imgSrc": "leon.jpg",
       "sonido": "rugido.mp3"
     },
     {
       "nombre": "Lobo",
       "img": "lobo.jpg",
+      "imgSrc": "lobo.jpg",
       "sonido": "aullido.mp3"
     },
     {
       "nombre": "Oso",
       "img": "oso.jpg",
+      "imgSrc": "oso.jpg",
       "sonido": "gruñido.mp3"
     },
     {
       "nombre": "Serpiente",
       "img": "serpiente.jpg",
+      "imgSrc": "serpiente.jpg",
       "sonido": "siseo.mp3"
     },
     {
       "nombre": "Aguila",
       "img": "aguila.jpg",
+      "imgSrc": "aguila.jpg",
       "sonido": "chillido.mp3"
     }
   ]

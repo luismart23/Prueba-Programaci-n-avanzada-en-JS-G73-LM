@@ -73,6 +73,17 @@ body {
 }
 
 /* Estilos para el cuerpo del modal */
+#imagenAnimalModal {
+  display: block;
+  margin: 0 auto;
+  /* Centrar horizontalmente */
+  max-width: 100%;
+  /* Ocupar todo el ancho disponible */
+  max-height: 100%;
+  /* Ocupar todo el alto disponible */
+  padding-bottom: 1rem;
+}
+
 .modal-body {
   /* Color de texto blanco para mayor contraste */
   color: #ffffff;
@@ -86,4 +97,26 @@ body {
 .modal-dialog {
   max-width: 80%;
   /* Ajusta el ancho máximo del modal según sea necesario */
+}
+
+/* Estilo para el botón de reproducción de sonido */
+.btn-audio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* Ancho completo del contenedor */
+  height: 50px;
+  /* Altura del botón */
+}
+
+.btn-audio img {
+  max-width: 80%;
+  /* Ancho máximo de la imagen dentro del botón */
+  max-height: 80%;
+  /* Altura máxima de la imagen dentro del botón */
+}
+
+.btn-audio:hover img {
+  filter: brightness(120%);
 }
