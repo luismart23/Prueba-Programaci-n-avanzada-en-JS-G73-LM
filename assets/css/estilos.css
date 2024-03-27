@@ -1,0 +1,89 @@
+/* Reset de márgenes y padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos generales del body */
+body {
+  /* Fondo de pantalla */
+  background-image: url("../img/fondo.jpg");
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* Altura mínima de la pantalla */
+  min-height: 100vh;
+  /* Padding para separar el contenido del borde */
+  padding: 50px;
+}
+
+/* Vista previa de la imagen */
+#preview {
+  height: 200px;
+  /* Fondo de imagen predeterminado */
+  background-image: url(../img/lion.svg);
+  background-position: top;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Estilos generales de la tarjeta */
+.card {
+  /* Altura mínima para ocupar todo el espacio disponible */
+  min-height: 100%;
+}
+
+/* Contenedor de animales */
+#animales {
+  /* Altura para ocupar todo el espacio disponible */
+  height: 100%;
+  /* Fondo blanco para destacar */
+  background: #ffffff;
+}
+
+/* Efectos de transición en los elementos de la tabla de animales */
+#animales div div {
+  transition: all 200ms;
+}
+
+/* Efecto de sombra al pasar el mouse sobre las tarjetas */
+#animales div>div:hover {
+  box-shadow: 0px 1px 5px 1px;
+}
+
+/* Estilos para los detalles del animal */
+.animal-details {
+  /* Color de texto blanco para mayor contraste */
+  color: #ffffff;
+}
+
+/* Estilos para la imagen del animal en el modal */
+.animal-image {
+  /* Ancho fijo para la imagen */
+  width: 200px;
+  /* Altura automática */
+  height: auto;
+}
+
+/* Estilos para el cuerpo del modal */
+.modal-body {
+  /* Color de texto blanco para mayor contraste */
+  color: #ffffff;
+}
+
+#tabla {
+  min-height: 400px;
+  /* Ajusta la altura mínima según sea necesario */
+}
+
+.modal-dialog {
+  max-width: 80%;
+  /* Ajusta el ancho máximo del modal según sea necesario */
+}
