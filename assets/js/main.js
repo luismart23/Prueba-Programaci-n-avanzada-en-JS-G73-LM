@@ -49,7 +49,7 @@
 import { Animal } from "./animal.js";
 import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
-(() => {
+$(document).ready(() => {
     const $animalInput = $("#animal");
     const $edadInput = $("#edad");
     const $comentariosInput = $("#comentarios");
@@ -210,5 +210,4 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         // Carga el audio
         audioElement.load();
     }
-
-})();
+});
