@@ -7,27 +7,17 @@ export class Animal {
         this.sonido = sonido;
     }
 
-    getNombre() {
-        return this.nombre;
+    reproducirSonido() {
+        this.playSound();
     }
 
-    getEdad() {
-        return this.edad;
-    }
-
-    getImg() {
-        return this.img;
-    }
-
-    getImgSrc() {
-        return this.imgSrc;
-    }
-
-    getSonido() {
-        return this.sonido;
+    playSound() {
+        const audioElement = new Audio(this.sonido);
+        audioElement.play();
     }
 
     setComentarios(comentarios) {
         this.comentarios = comentarios;
     }
 }
+

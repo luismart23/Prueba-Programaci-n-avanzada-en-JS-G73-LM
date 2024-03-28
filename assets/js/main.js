@@ -142,9 +142,14 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
     // Función para reproducir el sonido
     function reproducirSonido(sonido) {
-        const audioElement = new Audio(`./assets/sonido/${sonido}`);
-        audioElement.play();
+        const audioElement = new Audio();
+        audioElement.addEventListener('canplaythrough', function () {
+            audioElement.play();
+        });
+        audioElement.src = `./assets/sonido/${sonido}`;
+        audioElement.load();
     }
+
 
     // Función para manejar el evento de clic en el botón de registro
     $("#btnRegistrar").click(async function (event) {
