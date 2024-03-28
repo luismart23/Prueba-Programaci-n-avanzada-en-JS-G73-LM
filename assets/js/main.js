@@ -25,7 +25,6 @@
 import { Animal } from "./animal.js";
 import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
-// Función autoejecutable
 (() => {
     const $animalInput = $("#animal");
     const $edadInput = $("#edad");
@@ -37,26 +36,14 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
     const $imagenAnimalModal = $("#imagenAnimalModal");
     const $preview = $("#preview");
 
-    // Función para mostrar el detalle del animal en el modal
     function mostrarDetallesAnimal(nombre, edad, imgSrc, sonido) {
         $nombreAnimalModal.text(nombre);
         $edadAnimalModal.text(edad);
-        if (imgSrc) {
-            $imagenAnimalModal.attr("src", `./assets/img/${imgSrc}`);
-        } else {
-            $imagenAnimalModal.attr("src", "");
-        }
+        $imagenAnimalModal.attr("src", imgSrc ? `./assets/img/${imgSrc}` : "");
         $imagenAnimalModal.data("sonido", sonido);
         $modal.modal("show");
     }
 
-    // Función para manejar el evento de clic en el botón de audio dentro del modal
-    $modal.on("click", ".btn-audio", function () {
-        const sonido = $(this).closest(".modal-content").find("img").data("sonido");
-        reproducirSonido(sonido);
-    });
-
-    // Función para crear el elemento HTML de un animal
     function crearElementoAnimal(animal) {
         const animalDiv = document.createElement("div");
         animalDiv.classList.add("col", "col-md-3", "mb-3");
@@ -75,7 +62,11 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         return animalDiv;
     }
 
-    // Función para manejar el evento de clic en el botón de ver detalle
+    function reproducirSonido(sonido) {
+        const audioElement = new Audio(`./assets/sonido/${sonido}`);
+        audioElement.play();
+    }
+
     $(document).on("click", ".ver-detalle", function () {
         const $animalDiv = $(this).closest(".card");
         const nombre = $animalDiv.find(".card-title").text();
@@ -85,7 +76,6 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         mostrarDetallesAnimal(nombre, edad, imgSrc, sonido);
     });
 
-    // Función para obtener datos del animal de forma asíncrona
     async function obtenerDatosAnimal(nombre) {
         try {
             const response = await fetch("animales1.json");
@@ -113,7 +103,6 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         }
     }
 
-    // Función para manejar el evento de cambio en la selección de animal para actualizar la vista previa de la imagen
     $animalInput.change(async function () {
         const nombreAnimal = $(this).val();
         const animalData = await obtenerDatosAnimal(nombreAnimal);
@@ -122,37 +111,20 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         }
     });
 
-    // Función para mostrar mensajes de error al usuario
     function mostrarError(mensaje) {
         alert(mensaje);
     }
 
-    // Función para actualizar la vista previa de la imagen según la selección del usuario
     function actualizarVistaPreviaImagen(animal) {
         const imgSrc = animal.imgSrc ? animal.imgSrc : "";
-        $preview.html(`<div style="display: flex; justify-content: center; align-items: center; height: 100%;"><img src="./assets/img/${imgSrc}" alt="${animal.nombre}"
-        style="max-width: 100%; max-height: 250px;"></div>`);
+        $preview.html(`<div style="display: flex; justify-content: center; align-items: center; height: 100%;"><img src="./assets/img/${imgSrc}" alt="${animal.nombre}" style="max-width: 100%; max-height: 250px;"></div>`);
     }
 
-    // Función para manejar el evento de clic en el botón de reproducción de sonido
     $modal.on("click", ".btn-audio", function () {
         const sonido = $(this).closest(".modal-content").find("img").data("sonido");
         reproducirSonido(sonido);
     });
 
-    // Función para reproducir el sonido
-    function reproducirSonido(sonido) {
-        const audioElement = new Audio();
-        audioElement.addEventListener("canplaythrough", function () {
-            audioElement.play();
-        });
-        audioElement.src = `./assets/sonido/${sonido}`;
-        audioElement.load();
-    }
-
-
-
-    // Función para manejar el evento de clic en el botón de registro
     $("#btnRegistrar").click(async function (event) {
         event.preventDefault();
 
@@ -196,15 +168,6 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         $animalInput.val("");
         $edadInput.val("");
         $comentariosInput.val("");
-    });
-
-    // Función para manejar el evento de cambio en la selección de animal para actualizar la vista previa de la imagen
-    $animalInput.change(async function () {
-        const nombreAnimal = $(this).val();
-        const animalData = await obtenerDatosAnimal(nombreAnimal);
-        if (animalData) {
-            actualizarVistaPreviaImagen(animalData);
-        }
     });
 
 })();
