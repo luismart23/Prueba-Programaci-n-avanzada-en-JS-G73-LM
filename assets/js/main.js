@@ -151,6 +151,7 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         const edadAnimal = $edadInput.val();
         const comentariosAnimal = $comentariosInput.val();
 
+        // Validación de campos de entrada
         if (!nombreAnimal || !edadAnimal || !comentariosAnimal) {
             mostrarError("Por favor, complete todos los campos.");
             return;
