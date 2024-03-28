@@ -7,7 +7,7 @@
 
 // 4. Realizar por lo menos una función autoejecutable IIFE.
 
-
+// 5. Dividir el código en módulos
 
 // 6. Utilizar la manipulación del DOM para mostrar en la tabla los animales registrados con
 // el formulario
@@ -22,96 +22,8 @@
 
 // 10. Mostrar el detalle de cada animal en una ventana modal al ser presionada su imagen.
 
-
-// Clase Animal y subclases
-class Animal {
-    constructor(nombre, edad, img, imgSrc, sonido) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.img = img;
-        this.imgSrc = imgSrc;
-        this.sonido = sonido;
-    }
-
-    getNombre() {
-        return this.nombre;
-    }
-
-    getEdad() {
-        return this.edad;
-    }
-
-    getImg() {
-        return this.img;
-    }
-
-    getImgSrc() {
-        return this.imgSrc;
-    }
-
-    getSonido() {
-        return this.sonido;
-    }
-
-    setComentarios(comentarios) {
-        this.comentarios = comentarios;
-    }
-}
-
-class Leon extends Animal {
-    constructor(nombre, edad, img, imgSrc, sonido) {
-        super(nombre, edad, img, imgSrc, sonido);
-    }
-
-    reproducirSonido() {
-        const audioElement = new Audio(this.sonido);
-        audioElement.play();
-    }
-}
-
-class Lobo extends Animal {
-    constructor(nombre, edad, img, imgSrc, sonido) {
-        super(nombre, edad, img, imgSrc, sonido);
-    }
-
-    reproducirSonido() {
-        const audioElement = new Audio(this.sonido);
-        audioElement.play();
-    }
-}
-
-class Oso extends Animal {
-    constructor(nombre, edad, img, imgSrc, sonido) {
-        super(nombre, edad, img, imgSrc, sonido);
-    }
-
-    reproducirSonido() {
-        const audioElement = new Audio(this.sonido);
-        audioElement.play();
-    }
-}
-
-class Serpiente extends Animal {
-    constructor(nombre, edad, img, imgSrc, sonido) {
-        super(nombre, edad, img, imgSrc, sonido);
-    }
-
-    reproducirSonido() {
-        const audioElement = new Audio(this.sonido);
-        audioElement.play();
-    }
-}
-
-class Aguila extends Animal {
-    constructor(nombre, edad, img, imgSrc, sonido) {
-        super(nombre, edad, img, imgSrc, sonido);
-    }
-
-    reproducirSonido() {
-        const audioElement = new Audio(this.sonido);
-        audioElement.play();
-    }
-}
+import { Animal } from "./animal.js";
+import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
 // Función autoejecutable
 (() => {
@@ -288,4 +200,5 @@ class Aguila extends Animal {
             actualizarVistaPreviaImagen(animalData);
         }
     });
+
 })();

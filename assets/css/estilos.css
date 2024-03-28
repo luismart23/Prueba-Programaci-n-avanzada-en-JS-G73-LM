@@ -11,16 +11,16 @@ body {
   background-position: bottom;
   background-size: cover;
   background-repeat: no-repeat;
-  /* Altura mínima de la pantalla */
+
   min-height: 100vh;
-  /* Padding para separar el contenido del borde */
+
   padding: 50px;
 }
 
 /* Vista previa de la imagen */
 #preview {
   height: 200px;
-  /* Fondo de imagen predeterminado */
+  /* Fondo de imagen svg predeterminado */
   background-image: url(../img/lion.svg);
   background-position: top;
   background-size: contain;
@@ -36,15 +36,15 @@ body {
 
 /* Estilos generales de la tarjeta */
 .card {
-  /* Altura mínima para ocupar todo el espacio disponible */
+
   min-height: 100%;
 }
 
 /* Contenedor de animales */
 #animales {
-  /* Altura para ocupar todo el espacio disponible */
+
   height: 100%;
-  /* Fondo blanco para destacar */
+
   background: #ffffff;
 }
 
@@ -60,15 +60,15 @@ body {
 
 /* Estilos para los detalles del animal */
 .animal-details {
-  /* Color de texto blanco para mayor contraste */
+
   color: #ffffff;
 }
 
 /* Estilos para la imagen del animal en el modal */
 .animal-image {
-  /* Ancho fijo para la imagen */
+
   width: 200px;
-  /* Altura automática */
+
   height: auto;
 }
 
@@ -76,27 +76,27 @@ body {
 #imagenAnimalModal {
   display: block;
   margin: 0 auto;
-  /* Centrar horizontalmente */
+
   max-width: 100%;
-  /* Ocupar todo el ancho disponible */
+
   max-height: 100%;
-  /* Ocupar todo el alto disponible */
+
   padding-bottom: 1rem;
 }
 
 .modal-body {
-  /* Color de texto blanco para mayor contraste */
+
   color: #ffffff;
 }
 
 #tabla {
   min-height: 400px;
-  /* Ajusta la altura mínima según sea necesario */
+
 }
 
 .modal-dialog {
   max-width: 80%;
-  /* Ajusta el ancho máximo del modal según sea necesario */
+
 }
 
 /* Estilo para el botón de reproducción de sonido */
@@ -105,16 +105,16 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* Ancho completo del contenedor */
+
   height: 50px;
-  /* Altura del botón */
+
 }
 
 .btn-audio img {
   max-width: 80%;
-  /* Ancho máximo de la imagen dentro del botón */
+
   max-height: 80%;
-  /* Altura máxima de la imagen dentro del botón */
+
 }
 
 .btn-audio:hover img {
