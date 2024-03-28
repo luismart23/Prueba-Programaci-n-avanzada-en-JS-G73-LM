@@ -62,10 +62,17 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         return animalDiv;
     }
 
+    // Función para reproducir el sonido
     function reproducirSonido(sonido) {
-        const audioElement = new Audio(`./assets/sonido/${sonido}`);
-        audioElement.play();
+        const audioElement = new Audio();
+        audioElement.addEventListener("canplaythrough", function () {
+            audioElement.play();
+        });
+        // Especifica la ruta completa del archivo de sonido
+        audioElement.src = `https://github.com/luismart23/Prueba-Programacion-avanzada-en-JS-G73-LM/tree/main/assets/sonido/${sonido}`;
+        audioElement.load();
     }
+
 
     $(document).on("click", ".ver-detalle", function () {
         const $animalDiv = $(this).closest(".card");
