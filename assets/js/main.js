@@ -63,14 +63,7 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
     }
 
     function reproducirSonido(sonido) {
-        if (!sonido) {
-            console.error("Nombre del archivo de audio no definido.");
-            return;
-        }
-
-        const rutaSonido = sonido;
-        console.log("Cargando audio desde:", rutaSonido);
-
+        const rutaSonido = sonido.startsWith("assets/") ? sonido : `assets/sonido/${sonido}`;
         const audioElement = new Audio(rutaSonido);
 
         audioElement.crossOrigin = "anonymous"; // Habilita el uso de CORS
@@ -85,15 +78,12 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
         // Agrega un evento para reproducir el audio cuando se cargue completamente
         audioElement.addEventListener("canplaythrough", function () {
-            console.log("Audio cargado exitosamente:", rutaSonido);
             audioElement.play();
         });
 
         // Carga el audio
         audioElement.load();
     }
-
-
 
     $(document).on("click", ".ver-detalle", function () {
         const $animalDiv = $(this).closest(".card");
