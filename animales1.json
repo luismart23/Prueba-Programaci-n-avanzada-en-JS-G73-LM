@@ -4,31 +4,31 @@
       "nombre": "Leon",
       "img": "leon.jpg",
       "imgSrc": "leon.jpg",
-      "sonido": "assets/sonido/rugido.mp3"
+      "sonido": "assets/sonido/Rugido.mp3"
     },
     {
       "nombre": "Lobo",
       "img": "lobo.jpg",
       "imgSrc": "lobo.jpg",
-      "sonido": "assets/sonido/aullido.mp3"
+      "sonido": "assets/sonido/Aullido.mp3"
     },
     {
       "nombre": "Oso",
       "img": "oso.jpg",
       "imgSrc": "oso.jpg",
-      "sonido": "assets/sonido/gruñido.mp3"
+      "sonido": "assets/sonido/Gruñido.mp3"
     },
     {
       "nombre": "Serpiente",
       "img": "serpiente.jpg",
       "imgSrc": "serpiente.jpg",
-      "sonido": "assets/sonido/siseo.mp3"
+      "sonido": "assets/sonido/Siseo.mp3"
     },
     {
       "nombre": "Aguila",
       "img": "aguila.jpg",
       "imgSrc": "aguila.jpg",
-      "sonido": "assets/sonido/chillido.mp3"
+      "sonido": "assets/sonido/Chillido.mp3"
     }
   ]
 }
