@@ -20,4 +20,3 @@ export class Animal {
         this.comentarios = comentarios;
     }
 }
-

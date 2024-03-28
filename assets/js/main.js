@@ -22,6 +22,30 @@
 
 // 10. Mostrar el detalle de cada animal en una ventana modal al ser presionada su imagen.
 
+// 1. Crear las clases representadas en el diagrama implementando la herencia indicada.
+
+// 2. Crear las instancias de las clases utilizando los datos del formulario.
+
+// 3. Realizar una consulta asíncrona utilizando una función async / await para obtener las
+// imágenes correspondientes a los animales.
+
+// 4. Realizar por lo menos una función autoejecutable IIFE.
+
+// 5. Dividir el código en módulos
+
+// 6. Utilizar la manipulación del DOM para mostrar en la tabla los animales registrados con
+// el formulario
+
+// 7. Validar que el usuario haya asignado todos los datos del animal antes de que éste sea
+// agregado a la tabla.
+
+// 8. Devolver el formulario en un estado inicial luego de registrar a cada animal.
+
+// 9. Programar la interacción del botón de audio, en donde deberás reproducir el sonido
+// del animal en el sitio web.
+
+// 10. Mostrar el detalle de cada animal en una ventana modal al ser presionada su imagen.
+
 import { Animal } from "./animal.js";
 import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
@@ -60,29 +84,6 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         `;
         animalDiv.innerHTML = html;
         return animalDiv;
-    }
-
-    function reproducirSonido(sonido) {
-        const rutaSonido = sonido.startsWith("assets/") ? sonido : `assets/sonido/${sonido}`;
-        const audioElement = new Audio(rutaSonido);
-
-        audioElement.crossOrigin = "anonymous"; // Habilita el uso de CORS
-
-        // Agrega un evento para manejar errores de carga del audio
-        audioElement.addEventListener("error", function (e) {
-            console.error("Error al cargar el audio:", e);
-            console.error("Código de error:", e.target.error.code);
-            console.error("Mensaje de error:", e.target.error.message);
-            mostrarError("Error al cargar el audio.");
-        });
-
-        // Agrega un evento para reproducir el audio cuando se cargue completamente
-        audioElement.addEventListener("canplaythrough", function () {
-            audioElement.play();
-        });
-
-        // Carga el audio
-        audioElement.load();
     }
 
     $(document).on("click", ".ver-detalle", function () {
@@ -187,5 +188,26 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         $edadInput.val("");
         $comentariosInput.val("");
     });
+
+    function reproducirSonido(sonido) {
+        const rutaSonido = sonido.startsWith("assets/") ? sonido : `assets/sonido/${sonido}`;
+        const audioElement = new Audio(rutaSonido);
+
+        // Agrega un evento para manejar errores de carga del audio
+        audioElement.addEventListener("error", function (e) {
+            console.error("Error al cargar el audio:", e);
+            console.error("Código de error:", e.target.error.code);
+            console.error("Mensaje de error:", e.target.error.message);
+            mostrarError("Error al cargar el audio.");
+        });
+
+        // Agrega un evento para reproducir el audio cuando se cargue completamente
+        audioElement.addEventListener("canplaythrough", function () {
+            audioElement.play();
+        });
+
+        // Carga el audio
+        audioElement.load();
+    }
 
 })();
