@@ -50,29 +50,30 @@ import { Animal } from "./animal.js";
 import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
 (function () {
-    const $animalInput = $("#animal");
-    const $edadInput = $("#edad");
-    const $comentariosInput = $("#comentarios");
-    const $animalesContainer = $("#animales");
-    const $modal = $("#exampleModal");
-    const $nombreAnimalModal = $("#nombreAnimalModal");
-    const $edadAnimalModal = $("#edadAnimalModal");
-    const $imagenAnimalModal = $("#imagenAnimalModal");
-    const $preview = $("#preview");
+    const animalInput = document.getElementById("animal");
+    const edadInput = document.getElementById("edad");
+    const comentariosInput = document.getElementById("comentarios");
+    const animalesContainer = document.getElementById("animales");
+    const modal = document.getElementById("exampleModal");
+    const nombreAnimalModal = document.getElementById("nombreAnimalModal");
+    const edadAnimalModal = document.getElementById("edadAnimalModal");
+    const imagenAnimalModal = document.getElementById("imagenAnimalModal");
+    const preview = document.getElementById("preview");
 
     function mostrarDetallesAnimal(nombre, edad, imgSrc, sonido) {
-        $nombreAnimalModal.text(nombre);
-        $edadAnimalModal.text(edad);
-        $imagenAnimalModal.attr("src", imgSrc ? `./assets/img/${imgSrc}` : "");
-        $imagenAnimalModal.data("sonido", sonido);
-        $modal.modal("show");
+        nombreAnimalModal.textContent = nombre;
+        edadAnimalModal.textContent = edad;
+        imagenAnimalModal.src = imgSrc ? `./assets/img/${imgSrc}` : "";
+        imagenAnimalModal.dataset.sonido = sonido;
+        modal.classList.add("show");
+        modal.style.display = "block";
     }
 
     function crearElementoAnimal(animal) {
         const animalDiv = document.createElement("div");
         animalDiv.classList.add("col", "col-md-3", "mb-3");
         const imgSrc = animal.img ? animal.imgSrc : "";
-        const html = `
+        animalDiv.innerHTML = `
             <div class="card h-100" data-id="preview" data-sonido="${animal.sonido}">
                 <img src="./assets/img/${imgSrc}" class="card-img-top" alt="${animal.nombre}">
                 <div class="card-body">
@@ -82,18 +83,20 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
                 </div>
             </div>
         `;
-        animalDiv.innerHTML = html;
         return animalDiv;
     }
 
-    $(document).on("click", ".ver-detalle", function () {
-        const $animalDiv = $(this).closest(".card");
-        const nombre = $animalDiv.find(".card-title").text();
-        const edad = $animalDiv.find(".card-text").text().split(": ")[1];
-        const imgSrc = $animalDiv.find(".card-img-top").attr("src").split("/").pop();
-        const sonido = $animalDiv.data("sonido");
-        mostrarDetallesAnimal(nombre, edad, imgSrc, sonido);
+    document.addEventListener("click", function (event) {
+        if (event.target.classList.contains("ver-detalle")) {
+            const animalDiv = event.target.closest(".card");
+            const nombre = animalDiv.querySelector(".card-title").textContent;
+            const edad = animalDiv.querySelector(".card-text").textContent.split(": ")[1];
+            const imgSrc = animalDiv.querySelector(".card-img-top").getAttribute("src").split("/").pop();
+            const sonido = animalDiv.dataset.sonido;
+            mostrarDetallesAnimal(nombre, edad, imgSrc, sonido);
+        }
     });
+
 
     async function obtenerDatosAnimal(nombre) {
         try {
@@ -122,8 +125,8 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
         }
     }
 
-    $animalInput.change(async function () {
-        const nombreAnimal = $(this).val();
+    animalInput.addEventListener("change", async function () {
+        const nombreAnimal = this.value;
         const animalData = await obtenerDatosAnimal(nombreAnimal);
         if (animalData) {
             actualizarVistaPreviaImagen(animalData);
@@ -136,20 +139,26 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
     function actualizarVistaPreviaImagen(animal) {
         const imgSrc = animal.imgSrc ? animal.imgSrc : "";
-        $preview.html(`<div style="display: flex; justify-content: center; align-items: center; height: 100%;"><img src="./assets/img/${imgSrc}" alt="${animal.nombre}" style="max-width: 100%; max-height: 250px;"></div>`);
+        preview.innerHTML = `<div style="display: flex; justify-content: center; align-items: center; height: 100%;"><img src="./assets/img/${imgSrc}" alt="${animal.nombre}" style="max-width: 100%; max-height: 250px;"></div>`;
     }
 
-    $modal.on("click", ".btn-audio", function () {
-        const sonido = $(this).closest(".modal-content").find("img").data("sonido");
-        reproducirSonido(sonido);
+    modal.addEventListener("click", function (event) {
+        if (event.target.classList.contains("btn-audio")) {
+            const sonido = this.querySelector(".modal-content img").dataset.sonido;
+            reproducirSonido(sonido);
+        }
+        // Agregar el evento para resetear el modal cuando se haga clic fuera del contenido del modal o en el botón de cerrar
+        if (event.target.classList.contains("btn-close") || event.target.classList.contains("modal")) {
+            resetearModal();
+        }
     });
 
-    $("#btnRegistrar").click(async function (event) {
+    document.getElementById("btnRegistrar").addEventListener("click", async function (event) {
         event.preventDefault();
 
-        const nombreAnimal = $animalInput.val();
-        const edadAnimal = $edadInput.val();
-        const comentariosAnimal = $comentariosInput.val();
+        const nombreAnimal = animalInput.value;
+        const edadAnimal = edadInput.value;
+        const comentariosAnimal = comentariosInput.value;
 
         // Validación de campos de entrada
         if (!nombreAnimal || !edadAnimal || !comentariosAnimal) {
@@ -184,10 +193,10 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
                 animal = new Animal(nombreAnimal, edadAnimal, animalData.img, animalData.imgSrc, animalData.sonido);
         }
 
-        $animalesContainer.append(crearElementoAnimal(animal));
-        $animalInput.val("");
-        $edadInput.val("");
-        $comentariosInput.val("");
+        animalesContainer.appendChild(crearElementoAnimal(animal));
+        animalInput.value = "";
+        edadInput.value = "";
+        comentariosInput.value = "";
     });
 
     function reproducirSonido(sonido) {
@@ -209,5 +218,14 @@ import { Leon, Lobo, Oso, Serpiente, Aguila } from "./especies.js";
 
         // Carga el audio
         audioElement.load();
+    }
+
+    function resetearModal() {
+        nombreAnimalModal.textContent = "";
+        edadAnimalModal.textContent = "";
+        imagenAnimalModal.src = "";
+        imagenAnimalModal.removeAttribute("data-sonido");
+        modal.classList.remove("show");
+        modal.style.display = "none";
     }
 })();
